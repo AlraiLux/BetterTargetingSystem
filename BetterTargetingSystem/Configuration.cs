@@ -21,12 +21,14 @@ public class Configuration : IPluginConfiguration
     public float Cone3Distance { get; set; } = 40;
     public bool CloseTargetsCircleEnabled { get; set; } = true;
     public float CloseTargetsCircleRadius { get; set; } = 5;
-
+    
+    public bool UseCameraFacing { get; set; } = true;
+    
     public Keybind TabTargetKeybind { get; set; } = new Keybind(VirtualKey.TAB, false, false, false);
     public Keybind ClosestTargetKeybind { get; set; } = new Keybind(VirtualKey.TAB, false, true, false);
     public Keybind LowestHealthTargetKeybind { get; set; } = new Keybind(VirtualKey.TAB, true, false, false);
     public Keybind BestAOETargetKeybind { get; set; } = new Keybind(null, false, false, false);
-
+    
     // the below exist just to make saving less cumbersome
     [NonSerialized]
     private IDalamudPluginInterface? PluginInterface;

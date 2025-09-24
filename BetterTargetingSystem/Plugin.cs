@@ -452,7 +452,7 @@ public sealed unsafe class Plugin : IDalamudPlugin
             else if (Configuration.Cone2Enabled && distance > Configuration.Cone1Distance)
                 angle = Configuration.Cone2Angle;
 
-            if (Utils.IsInFrontOfCamera(obj, angle) == false) continue;
+            if (Utils.IsInFrontOfCamera(obj, angle, Configuration.UseCameraFacing) == false) continue;
 
             // In front of the player, adding it to the default list
             TargetsList.Add(obj);

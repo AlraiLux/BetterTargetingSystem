@@ -37,7 +37,7 @@ public unsafe class Utils
         return distance;
     }
 
-    internal unsafe static float GetCameraRotation()
+    internal static float GetCameraRotation()
     {
         // Gets the **camera** rotation in deg between -180 and 180
         var cameraRotation =AreaMapNumberArray.Instance()->ConeRotation;
@@ -61,16 +61,18 @@ public unsafe class Utils
         var rotation = (float)((Math.Abs(cameraRotation * (Math.PI / 180)) - Math.PI) * sign);
 
         // DO NOT ASK WHY.
+        // 'Kay.
         return rotation +135;
     }
 
-    internal static bool IsInFrontOfCamera(DalamudGameObject obj, float maxAngle)
+    internal static bool IsInFrontOfCamera(DalamudGameObject obj, float maxAngle, bool useCameraFacing)
     {
         // This is still relying on camera orientation but the cone is from the player's position
         if (Plugin.Client.LocalPlayer == null)
             return false;
-
-        var rotation = GetCameraRotation();
+        
+        var rotation = useCameraFacing ? GetCameraRotation() : GetPlayerRotation();
+        
         var faceVec = new Vector2((float)Math.Cos(rotation), (float)Math.Sin(rotation));
 
         var dir = obj.Position - Plugin.Client.LocalPlayer.Position;

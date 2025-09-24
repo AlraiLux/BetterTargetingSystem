@@ -34,7 +34,10 @@ public unsafe class DebugMode
         var cone1HalfAngle = Plugin.Configuration.Cone1Angle / 2;
         var cone2HalfAngle = Plugin.Configuration.Cone2Angle / 2;
         var cone3HalfAngle = Plugin.Configuration.Cone3Angle / 2;
-        var rotation = Utils.GetCameraRotation();
+        
+        
+        var rotation = Plugin.Configuration.UseCameraFacing ? Utils.GetCameraRotation() : Utils.GetPlayerRotation(); 
+        
         for (var degrees = -cone1HalfAngle; degrees <= cone1HalfAngle; degrees += 0.1f)
         {
             float distance = Plugin.Configuration.Cone1Distance;

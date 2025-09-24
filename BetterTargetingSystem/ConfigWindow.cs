@@ -345,6 +345,26 @@ namespace BetterTargetingSystem.Windows
                 ImGui.EndTable();
             }
             ImGui.NewLine();
+            
+            ImGui.Text("\n[Targeting Reference]");
+            if (ImGui.BeginTable("SettingsConfigTable", 2, ImGuiTableFlags.NoPadOuterX | ImGuiTableFlags.NoPadOuterX))
+            {
+                ImGui.TableSetupColumn("", ImGuiTableColumnFlags.None, 50);
+                ImGui.TableSetupColumn("", ImGuiTableColumnFlags.None, 112);
+                ImGui.TableNextColumn();
+                ImGui.Text("Camera:");
+                ImGui.TableNextColumn();
+                var UseCameraFacing = Configuration.UseCameraFacing;
+                if (ImGui.Checkbox("", ref UseCameraFacing))
+                {
+                    Configuration.UseCameraFacing = UseCameraFacing;
+                    Configuration.Save();
+                }
+                ImGui.EndTable();
+            }
+            
+            
+            ImGui.NewLine();
             if (ImGui.Button("Reset settings to defaults", new Vector2(170,25)))
             {
                 Configuration.Cone1Angle = 140;
@@ -357,6 +377,7 @@ namespace BetterTargetingSystem.Windows
                 Configuration.Cone3Distance = 40;
                 Configuration.CloseTargetsCircleEnabled = true;
                 Configuration.CloseTargetsCircleRadius = 5;
+                Configuration.UseCameraFacing = true;
                 Configuration.Save();
             }
 
